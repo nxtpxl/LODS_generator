@@ -13,7 +13,7 @@ import maya.mel as mel
 import pymel.core as pm
 
 import NXTPXL
-Import NXTLOG
+import NXTLOG
 from PROJECTLOG import *
 from NXTPXL import polyReduce_UI_path as PRUI 
 from NXTPXL import filePathFixed
