@@ -1,11 +1,7 @@
 # pyside gui
 import os
-import site
-site.addsitedir('C:\Program Files\Autodesk\Maya2018\Python\Lib\site-packages\Qt.py-master')
-#print(Qt.__binding__)
 import Qt
 from Qt import QtWidgets
-
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
@@ -16,12 +12,19 @@ import maya.cmds as cmds
 import maya.mel as mel
 import pymel.core as pm
 
+import NXTPXL
+Import NXTLOG
+from PROJECTLOG import *
+from NXTPXL import polyReduce_UI_path as PRUI 
+from NXTPXL import filePathFixed
+from NXTPXL import userLogs
+
 class LOD_Generator(QWidget):
     def __init__(self):
         QWidget.__init__(self)
-
-        path = "C:/Users/nitin.singh/Dropbox/MAYA_2018_python_code/polyReduce_002.ui"
+        path = (PRUI +'/polyReduce_002.ui')
         self.ui = QUiLoader().load(path)
+	PROJECTLOG.currentProject()
         #self.ui = uic.loadUi(os.path.dirname(__file__) + '/poly_reduce_Ui.ui')
         #self.ui = uic.loadUi(path)
         self.addGeoIconPath = 'L:/NXTPXLENT/pipe___RND/library/icons/ui_icons/add.png'
