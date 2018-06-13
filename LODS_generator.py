@@ -27,31 +27,30 @@ class LOD_Generator(QWidget):
         self.addGeoIconPath = 'L:/NXTPXLENT/pipe___RND/library/icons/ui_icons/add.png'
 
         self.ui.tabWidget.setStyleSheet("""
-        QTabBar::tab:selected {
-            background:  darkGreen;
-        }
-        QTabWidget::tab-bar {
-            left: 10px; /* move to the right by 5px */
-        }
-        QTabBar::tab {
-            border: 2px solid #C4C4C3;
-
-            border-top-left-radius: 1px;
-            border-top-right-radius: 5px;
-            min-width: 30ex;
-        }
-        QTabBar::tab:selected {
-            border-color: #3BB143;
-            border-top-color: lightGreen; /* same as pane color */
-            margin-top: 0px; /* make non-selected tabs look smaller */
-        }
-        QTabWidget::tab-bar {
-            alignment: center;
-        }
-        QTabBar::tab:hover {
-            background: #0F52BA;
-        }
-        """)
+					QTabBar::tab:selected {
+					    background:  darkGreen;
+					}
+					QTabWidget::tab-bar {
+					    left: 10px; /* move to the right by 5px */
+					}
+					QTabBar::tab {
+					    border: 2px solid #C4C4C3;
+					    border-top-left-radius: 1px;
+					    border-top-right-radius: 5px;
+					    min-width: 30ex;
+					}
+					QTabBar::tab:selected {
+					    border-color: #3BB143;
+					    border-top-color: lightGreen; /* same as pane color */
+					    margin-top: 0px; /* make non-selected tabs look smaller */
+					}
+					QTabWidget::tab-bar {
+					    alignment: center;
+					}
+					QTabBar::tab:hover {
+					    background: #0F52BA;
+					}
+        				""")
 
         self.ui.add_selectedMesh_button.setIcon(QIcon(self.addGeoIconPath))
         self.ui.geometry_selected_name_lineEdit.setStyleSheet("* { background-color: rgba(0, 0, 0, 0); }");
@@ -71,8 +70,6 @@ class LOD_Generator(QWidget):
         self.ui.wrap_comboBox.addItems(['180', '720', '2880' ])
         self.ui.BBOX_comboBox.addItems(['Bounding Box'])
         self.updateButton('off')
-
-
 
         self.ui.LOD1_spinBox.setDisabled(True)
         self.ui.LOD2_spinBox.setDisabled(True)
@@ -193,8 +190,6 @@ class LOD_Generator(QWidget):
             slider.setStyleSheet("""QLineEdit { background-color: rgb(70, 70, 70)}""")
             spinBox.setStyleSheet("""QSpinBox { background-color: rgb(70, 70, 70)}""")
 
-
-
     def state_changed_wrap_LOD(self, int):
         if self.ui.WRAP_chkBox.isChecked():
             self.ui.wrap_comboBox.setDisabled(False)
@@ -225,11 +220,9 @@ class LOD_Generator(QWidget):
         cmds.polyReduce(ver=1, termination=2, tct=reductionNumber)
         cmds.delete(ch=True)
 
-
     def MakeCube(self, *args):
         geo = cmds.geomToBBox(keepOriginal=True, name="bakedBOX", combineMesh = True)
         return geo
-
 
     def copyPivot(self):
         sourceObj = cmds.ls(sl = True)[len(cmds.ls(sl = True))-1]
