@@ -218,7 +218,7 @@ class LOD_Generator(QWidget):
 
     def tabSelected(self, arg=None):
         print '\n\t tabSelected() current Tab index =', arg
-
+		
     def genFunction(self, createdLOD, reductionNumber):
         mesh = cmds.select(createdLOD)
         #mel.eval('polyCleanupArgList 3 { "0","2","1","0","1","1","1","0","0","1e-005","1","1e-005","1","1e-005","0","1","1" };')
@@ -232,9 +232,6 @@ class LOD_Generator(QWidget):
 
 
     def copyPivot(self):
-        #1. Select source object(s)
-        #2. Add to selection target object
-
         sourceObj = cmds.ls(sl = True)[len(cmds.ls(sl = True))-1]
         targetObj = cmds.ls(sl = True)[0:(len(cmds.ls(sl = True))-1)]
         parentList = []
@@ -257,7 +254,6 @@ class LOD_Generator(QWidget):
                 cmds.parent(targetObj[ind], world = True)
 
     def generateLODS(self):
-
         x = self.ui.selectedGeo_groupBox.title()
         x = (x.replace('Selected Mesh:  ',''))
         fullPath = str(cmds.ls(x, long = True)[0])
@@ -273,7 +269,6 @@ class LOD_Generator(QWidget):
                 LOD01_Val = []
                 LOD02_Val = []
                 LOD03_Val = []
-
                 currentIndex = self.whatTab()
                 print currentIndex
                 if currentIndex == 0:
@@ -299,8 +294,7 @@ class LOD_Generator(QWidget):
 
                 LOD0_LOD = cmds.duplicate(obSl, name=(obSl + '__LOD0'))
                 lods.append(LOD0_LOD)
-
-                print LOD01_Val,LOD02_Val,LOD03_Val
+                #print LOD01_Val,LOD02_Val,LOD03_Val
                 if self.ui.LOD1_chkBox.isChecked():
                     LOD1_Num = LOD01_Val[0]
                     LOD1_LOD = cmds.duplicate(obSl, name=(obSl + '__LOD1'))
@@ -350,8 +344,6 @@ class LOD_Generator(QWidget):
                     cmds.select(newMesh)
                     cmds.select(obSl, add = True)
                     self.copyPivot()
-
-
                     lods.append(newMesh)
                 if self.ui.BBOX_chkBox.isChecked():
                     print ('make a bounding box')
@@ -362,7 +354,6 @@ class LOD_Generator(QWidget):
                     cmds.select(obSl)
                     cmds.select(newmeshBox, add = True)
                     self.copyPivot()
-
                 cmds.select(clear=True)
                 if lods == []:
                     pass
@@ -379,16 +370,10 @@ class LOD_Generator(QWidget):
                 print ('\n')
                 cmds.inViewMessage(amg="LOD generated successfully", pos="botCenter", fade=True)
                 print('Done')
-
         else:
             cmds.confirmDialog(title='Error:', message='No objects selected for polygon reduction')
-
-
-
-def run():
+def LODS():
     global UI
     UI = LOD_Generator()
     UI.ui.show()
-
-
-run()
+LODS()
